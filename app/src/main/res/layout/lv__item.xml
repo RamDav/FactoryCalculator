@@ -3,13 +3,9 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="horizontal">
-    
+
     <TextView
-        android:id="@+id/list_view_items_id"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
-    <TextView
-        android:id="@+id/list_view_items_name"
+        android:id="@+id/lv__item__name"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

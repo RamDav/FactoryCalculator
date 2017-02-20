@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MyLittleFactory</string>
+    <string name="activity_item__recipes">Recipes</string>
+    <string name="activity_recipe__ingredients">Ingredients</string>
+    <string name="activity_recipe__products">Products</string>
 </resources>

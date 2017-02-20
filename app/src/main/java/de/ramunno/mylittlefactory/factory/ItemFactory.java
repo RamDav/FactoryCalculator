@@ -15,7 +15,10 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import de.ramunno.mylittlefactory.R;
 
@@ -24,7 +27,7 @@ public class ItemFactory {
     private class ItemsXMLParser {
         private final String ns = null;
 
-        public List<Item> parse(InputStream in) throws XmlPullParserException, IOException {
+        public HashMap<Integer, Item> parse(InputStream in) throws XmlPullParserException, IOException {
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(in, null);
@@ -32,9 +35,9 @@ public class ItemFactory {
             return readItems(parser);
         }
 
-        private List<Item> readItems(XmlPullParser parser) throws XmlPullParserException, IOException {
-            List<Item> entries = new ArrayList();
-
+        private HashMap<Integer, Item> readItems(XmlPullParser parser) throws XmlPullParserException, IOException {
+            HashMap<Integer, Item> items = new HashMap<Integer, Item>();
+            Item item;
             parser.require(XmlPullParser.START_TAG, ns, "items");
             while (parser.next() != XmlPullParser.END_TAG) {
                 if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -43,14 +46,14 @@ public class ItemFactory {
                 String name = parser.getName();
                 // Start by looking for the item tag
                 if (name.equalsIgnoreCase("item")) {
-                    entries.add(readItem(parser));
-
+                    item = readItem(parser);
+                    items.put(item.ID, item);
                 } else {
                     skip(parser);
                 }
 
             }
-            return entries;
+            return items;
         }
 
         private Item readItem(XmlPullParser parser) throws XmlPullParserException, IOException {
@@ -124,12 +127,12 @@ public class ItemFactory {
         }
     }
 
-    public List<Item> generate(Context ctx){
+    public HashMap<Integer, Item> generate(Context ctx){
         Resources res = ctx.getResources();
         InputStream in_s = res.openRawResource(R.raw.items);
 
         try{
-            List<Item> items = null;
+            HashMap<Integer, Item> items = null;
             ItemsXMLParser parser = new ItemsXMLParser();
             items = parser.parse(in_s);
             in_s.close();

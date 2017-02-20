@@ -1,6 +1,35 @@
 <items>
     <item>
         <id>0</id>
-        <name>test</name>
+        <name>coal</name>
     </item>
+    <item>
+        <id>1</id>
+        <name>iron ore</name>
+    </item>
+    <item>
+        <id>2</id>
+        <name>iron plate</name>
+    </item>
+    <item>
+        <id>3</id>
+        <name>copper ore</name>
+    </item>
+    <item>
+        <id>4</id>
+        <name>stone</name>
+    </item>
+    <item>
+        <id>5</id>
+        <name>copper plate</name>
+    </item>
+    <item>
+        <id>6</id>
+        <name>copper cable</name>
+    </item>
+    <item>
+        <id>7</id>
+        <name>electronic circuit</name>
+    </item>
+
 </items>
